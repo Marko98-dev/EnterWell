@@ -1,0 +1,68 @@
+﻿@model EnterWell.Models.Invoice
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @*<div class="form-horizontal">
+            <h4>Invoice</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Items, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Items, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.Items, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+
+    foreach (var item in Model.Items)
+    {
+        <dd>
+            @Html.LabelFor(x => item.ProductName)
+            @Html.EditorFor(x => item.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+        </dd>
+        <dd>
+            @Html.LabelFor(x => item.Amount)
+            @Html.EditorFor(x => item.Amount, new { htmlAttributes = new { @class = "form-control" } })
+        </dd>
+        <dd>
+            @Html.LabelFor(x => item.ProductPrice)
+            @Html.EditorFor(x => item.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+        </dd>
+        <dd>
+            @Html.LabelFor(x => item.TaxType)
+            @Html.EditorFor(x => item.TaxType, new { htmlAttributes = new { @class = "form-control" } })
+        </dd>
+    }
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
